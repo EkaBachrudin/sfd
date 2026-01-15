@@ -45,13 +45,20 @@ export function Header({ title, subtitle, action, onMenuClick, showMenuButton = 
 
         {/* Right Section - Actions */}
         <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 flex-shrink-0">
-          {/* Notifications */}
-          <button className="relative p-2 rounded-lg hover:bg-gray-100 transition-colors">
+          {/* Notifications - Desktop only */}
+          <button className="relative p-2 rounded-lg hover:bg-gray-100 transition-colors hidden sm:block">
             <Bell className="w-5 h-5 text-gray-600" />
             <span className="absolute top-1 right-1 w-2 h-2 bg-[var(--danger)] rounded-full" />
           </button>
 
-          {/* Custom Action */}
+          {/* Custom Action - Mobile replaces notification, Desktop shows separately */}
+          {action && (
+            <div className="sm:hidden">
+              {action}
+            </div>
+          )}
+
+          {/* Custom Action - Desktop */}
           {action && (
             <div className="hidden sm:block ml-0 sm:ml-2">
               {action}
